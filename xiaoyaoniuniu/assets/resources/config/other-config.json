@@ -1,0 +1,40 @@
+{
+  "name_config": {
+    "linebanker": "连庄",
+    "turnbanker":"轮庄",
+    "kingbanker": "霸王庄",
+    "lock_card_all": "全扣",
+    "lock_card_1": "扣一张",
+    "lock_card_2": "扣两张",
+    "cowcow": "牛牛",
+    "cow9": "牛九",
+    "cow8": "牛八",
+    "cow7": "牛七",
+    "gold": "五花",
+    "fivesmall": "五小",
+    "bomb": "炸弹",
+    "samecolor": "同花",
+    "scroll": "顺子",
+    "bottle": "葫芦"
+  },
+  "value_config": {
+    "bomb":17,
+    "fivesmall":16,
+    "gold": 15,
+    "bottle":14,
+    "samecolor":13,
+    "scroll":12,
+    "silver":11,
+    "cowcow": 10,
+    "cow9": 9,
+    "cow8": 8,
+    "cow7": 7,
+    "cow6": 6,
+    "cow5": 5,
+    "cow4": 4,
+    "cow3": 3,
+    "cow2": 2,
+    "cow1": 1,
+    "cow0": 0
+  }
+}

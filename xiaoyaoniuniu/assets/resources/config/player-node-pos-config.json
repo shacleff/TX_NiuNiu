@@ -1,0 +1,139 @@
+{
+  "1": {
+    "widget": [
+      {
+        "direction": "bottom",
+        "offset": 80
+      },
+      {
+        "direction": "left",
+        "offset": 80
+      }
+    ],
+    "nickNameNodePos": {
+      "x": 113,
+      "y": -20
+    },
+    "bankerIconPos": {
+      "x": 80,
+      "y": 40
+    },
+    "cardsStartPos": {
+      "x": 542,
+      "y": 285
+    },
+    "cardsEndPos": {
+      "x": 126,
+      "y": 35
+    },
+    "chooseScoreBgStartPos": {
+      "x": 563,
+      "y": 144
+    },
+    "chooseScoreBgEndPos": {
+      "x": 80,
+      "y": 40
+    },
+    "chooseScoreNodePos": {
+      "x": 27,
+      "y": 0
+    }
+  },
+  "2": {
+    "widget": [
+      {
+        "direction": "right",
+        "offset": 80
+      }
+    ],
+    "nickNameNodePos": {
+      "x": -6,
+      "y": -87
+    },
+    "bankerIconPos": {
+      "x": -90,
+      "y": -99
+    },
+    "cardsStartPos": {
+      "x": -578,
+      "y": 0
+    },
+    "cardsEndPos": {
+      "x": -168,
+      "y": 10
+    },
+    "chooseScoreBgEndPos": {
+      "x": -90,
+      "y": -99
+    },
+    "chooseScoreNodePos": {
+      "x": -23,
+      "y": 0
+    }
+
+  },
+  "3": {
+    "widget": [
+      {
+        "direction": "top",
+        "offset": 80
+      }
+    ],
+    "nickNameNodePos": {
+      "x": 113,
+      "y": -20
+    },
+    "bankerIconPos": {
+      "x": 80,
+      "y": 40
+    },
+    "cardsStartPos": {
+      "x": 0,
+      "y": -245
+    },
+    "cardsEndPos": {
+      "x": 0,
+      "y": -118
+    },
+    "chooseScoreBgEndPos": {
+      "x": 83.9,
+      "y": 47
+    },
+    "chooseScoreNodePos": {
+      "x": 27,
+      "y": 0
+    }
+  },
+  "4": {
+    "widget": [
+      {
+        "direction": "left",
+        "offset": 80
+      }
+    ],
+    "nickNameNodePos": {
+      "x": 0,
+      "y": -87
+    },
+    "bankerIconPos": {
+      "x": 100,
+      "y": -82
+    },
+    "cardsStartPos": {
+      "x": 532,
+      "y": 0
+    },
+    "cardsEndPos": {
+      "x": 168,
+      "y": 10
+    },
+    "chooseScoreBgEndPos": {
+      "x": 100,
+      "y": -82
+    },
+    "chooseScoreNodePos": {
+      "x": 27,
+      "y": 0
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "cf67b07c-a3ef-4f74-916e-6171c09e4bf9",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "jiesuan_item": {
+      "ver": "1.0.3",
+      "uuid": "2a1d9e68-c299-4014-95c6-ffd59a731633",
+      "rawTextureUuid": "cf67b07c-a3ef-4f74-916e-6171c09e4bf9",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 311,
+      "height": 490,
+      "rawWidth": 311,
+      "rawHeight": 490,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

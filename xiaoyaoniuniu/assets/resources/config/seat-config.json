@@ -1,0 +1,27 @@
+{
+  "seat_1": {
+    "playerNodePos": {
+      "x": -543,
+      "y": -278
+
+    }
+  },
+  "seat_2": {
+    "playerNodePos": {
+      "x": 578,
+      "y": 0
+    }
+  },
+  "seat_3":{
+    "playerNodePos": {
+      "x": 0,
+      "y": 279
+    }
+  },
+  "seat_4":{
+    "playerNodePos": {
+      "x": -571,
+      "y": 0
+    }
+  }
+}

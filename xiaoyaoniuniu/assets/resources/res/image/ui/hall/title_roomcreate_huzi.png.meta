@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "6b1df099-55c3-415b-a7f7-e50fd6d5a85e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "title_roomcreate_huzi": {
+      "ver": "1.0.3",
+      "uuid": "41ae7c5f-bf19-4f10-813f-61fde0abbef9",
+      "rawTextureUuid": "6b1df099-55c3-415b-a7f7-e50fd6d5a85e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -0.5,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 257,
+      "height": 132,
+      "rawWidth": 258,
+      "rawHeight": 133,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
