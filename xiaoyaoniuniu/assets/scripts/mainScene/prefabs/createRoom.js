@@ -42,7 +42,7 @@ cc.Class({
             } else {
                 console.log('result = ' + JSON.stringify(result));
             }
-            this.gameConfig = result;
+            this.gameConfig = result.json;
         });
     },
 

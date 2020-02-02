@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "ba8a8fc3-df00-4b1b-b4a8-47ab2edf924f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "btn_cancelbg": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "06fb7c16-c111-4cd1-a441-b5c1022f2b4d",
       "rawTextureUuid": "ba8a8fc3-df00-4b1b-b4a8-47ab2edf924f",
       "trimType": "auto",

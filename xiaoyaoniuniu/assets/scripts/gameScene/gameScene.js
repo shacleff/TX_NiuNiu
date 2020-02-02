@@ -26,7 +26,7 @@ cc.Class({
         let loadCount = 0;
         let index = 0;
         const loadEnd = function (key, result) {
-            global.configMap[key] = result;
+            global.configMap[key] = result.json;
             loadCount++;
             if (loadCount === index) {
                 //如果加载资源成功的次数 等于总资源的个数 ，说明加载完成

@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "13cafd06-09a9-4f13-9939-0f66ec010ff5",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "yingzi": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "f8ae5b52-e82e-4fad-8194-8131a2ead1cb",
       "rawTextureUuid": "13cafd06-09a9-4f13-9939-0f66ec010ff5",
       "trimType": "auto",

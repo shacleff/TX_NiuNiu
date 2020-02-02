@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "90922aaf-d3c5-4a87-9c0b-600b8e20c7f7",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "jianfemblue_0": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b370f958-102b-4ba7-98fb-a69f0830f693",
       "rawTextureUuid": "90922aaf-d3c5-4a87-9c0b-600b8e20c7f7",
       "trimType": "auto",

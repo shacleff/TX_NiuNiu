@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "119e9115-e3ce-49be-94e8-2a81de25dee4",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "wanfaBtn": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "be52455c-2cf9-48a3-b253-127ed8a7f2bf",
       "rawTextureUuid": "119e9115-e3ce-49be-94e8-2a81de25dee4",
       "trimType": "auto",

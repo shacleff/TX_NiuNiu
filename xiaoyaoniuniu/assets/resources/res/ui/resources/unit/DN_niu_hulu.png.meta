@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "ce281b9e-e32f-4924-89a8-156f147b9d40",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "DN_niu_hulu": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "43fe2256-504b-4970-bc3c-daf04cfc3379",
       "rawTextureUuid": "ce281b9e-e32f-4924-89a8-156f147b9d40",
       "trimType": "auto",

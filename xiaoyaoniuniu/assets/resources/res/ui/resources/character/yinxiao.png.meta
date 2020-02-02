@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "f30600bc-c584-4ac0-966e-5b579082143c",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "yinxiao": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "0eb6830d-8a2a-4827-a7f5-a1fb627ae700",
       "rawTextureUuid": "f30600bc-c584-4ac0-966e-5b579082143c",
       "trimType": "auto",

@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "4a5c279e-23dc-4b83-a73e-fe4a4836a759",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "roomcard": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "afeb9b00-0b06-445c-a027-86e93b0b7208",
       "rawTextureUuid": "4a5c279e-23dc-4b83-a73e-fe4a4836a759",
       "trimType": "auto",

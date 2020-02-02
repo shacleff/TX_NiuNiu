@@ -119,15 +119,15 @@ cc.Class({
         //首先显示个个数据
         let position = config.nickNameNodePos;
         console.log('nick name node position = ' + JSON.stringify(position));
-        this.nickNameNode.position = cc.p(position.x, position.y);
-        this.bankerIconNode.position = cc.p(config.bankerIconPos.x, config.bankerIconPos.y);
+        this.nickNameNode.position = cc.v2(position.x, position.y);
+        this.bankerIconNode.position = cc.v2(config.bankerIconPos.x, config.bankerIconPos.y);
         this.scoreLabel.string = data.score;
         this.nickNameLabel.string = data.nickName;
         this.bankerIconNode.active = false;
-        this.startPosNode.position = cc.p(config.cardsStartPos.x, config.cardsStartPos.y);
-        this.endPosNode.position = cc.p(config.cardsEndPos.x, config.cardsEndPos.y);
-        this.chooseScoreBg.position = cc.p(config.chooseScoreBgEndPos.x, config.chooseScoreBgEndPos.y);
-        this.chooseScoreLabel.node.position = cc.p(config.chooseScoreNodePos.x, config.chooseScoreNodePos.y);
+        this.startPosNode.position = cc.v2(config.cardsStartPos.x, config.cardsStartPos.y);
+        this.endPosNode.position = cc.v2(config.cardsEndPos.x, config.cardsEndPos.y);
+        this.chooseScoreBg.position = cc.v2(config.chooseScoreBgEndPos.x, config.chooseScoreBgEndPos.y);
+        this.chooseScoreLabel.node.position = cc.v2(config.chooseScoreNodePos.x, config.chooseScoreNodePos.y);
         console.log('头像地址是 =' + data.avatar);
         let remoteUrl = data.avatar
         // let remoteUrl = "https://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0";
@@ -233,7 +233,7 @@ cc.Class({
         //创建五张牌
         let index = 0;
         for (let i = 0; i < 5; i++) {
-            this.createOneFiveCard(i * 0.1, cc.pAdd(this.endPosNode.position, cc.p(i * 30 + (5 - 1) * -0.5 * 30, 0)), function () {
+            this.createOneFiveCard(i * 0.1, cc.v2(this.endPosNode.x,this.endPosNode.y).add(cc.v2(i * 30 + (5 - 1) * -0.5 * 30, 0)), function () {
                 index++;
                 if (index === 5) {
                     console.log('加载完成');

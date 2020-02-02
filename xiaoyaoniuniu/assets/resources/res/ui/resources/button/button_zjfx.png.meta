@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "71bf88aa-e4f1-42f6-a148-87427e72d434",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "button_zjfx": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "f767d121-219f-4852-9493-7935e2dacf3b",
       "rawTextureUuid": "71bf88aa-e4f1-42f6-a148-87427e72d434",
       "trimType": "auto",

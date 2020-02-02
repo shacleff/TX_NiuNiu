@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "e1dfb982-b8fa-4006-b9fa-d2bca8e76ac4",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "hall_lunbop2": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "ffcbaffe-589c-4836-b862-c247dc218253",
       "rawTextureUuid": "e1dfb982-b8fa-4006-b9fa-d2bca8e76ac4",
       "trimType": "auto",

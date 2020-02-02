@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "22c0cdeb-4a37-441f-b07d-a5e295901cba",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "sp_nigou": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "7e289482-95c5-400f-b48d-4fad90daeca7",
       "rawTextureUuid": "22c0cdeb-4a37-441f-b07d-a5e295901cba",
       "trimType": "auto",

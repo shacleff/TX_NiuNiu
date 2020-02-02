@@ -32,7 +32,7 @@ cc.Class({
             for (let i = 0 ; i < data.length ; i ++){
                 let node = cc.instantiate(this.playerGameRecord);
                 node.parent = this.connectNode;
-                node.position = cc.p(0, -90 - i * 160);
+                node.position = cc.v2(0, -90 - i * 160);
                 node.getComponent('playerRecordCell').initWithData(this,data[i]);
             }
             this.connectNode.height = 160 * data.length + 10;
@@ -50,7 +50,7 @@ cc.Class({
         //     let node = cc.instantiate(this.playerGameRecord);
         //     node.parent = this.connectNode;
         //     console.log('node height = ' + node.height);
-        //     node.position = cc.p(0,-90 - i * 160);
+        //     node.position = cc.v2(0,-90 - i * 160);
         //     height = node.height;
         // }
         // this.connectNode.height = 160 * 10 + 10;

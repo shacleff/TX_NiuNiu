@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "2dc51eb6-edf0-42c0-b024-0e84e1f1f191",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "btn_daikai2": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "acbbd1a1-19c4-407a-b2f7-8ee341aa9e7c",
       "rawTextureUuid": "2dc51eb6-edf0-42c0-b024-0e84e1f1f191",
       "trimType": "auto",

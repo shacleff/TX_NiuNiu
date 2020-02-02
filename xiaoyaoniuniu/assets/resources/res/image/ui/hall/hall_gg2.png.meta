@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "6009173b-4be7-4da9-8126-c11b6694328c",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "hall_gg2": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "ba0e74b3-5012-49d2-9052-9bdc89cd760f",
       "rawTextureUuid": "6009173b-4be7-4da9-8126-c11b6694328c",
       "trimType": "auto",

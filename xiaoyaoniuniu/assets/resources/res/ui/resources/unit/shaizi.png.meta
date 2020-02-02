@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "73da6af0-4bb8-4569-ab43-c8fc83ede85c",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "shaizi": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "d1b39a66-dccb-48fe-8a84-bf7167c03811",
       "rawTextureUuid": "73da6af0-4bb8-4569-ab43-c8fc83ede85c",
       "trimType": "auto",

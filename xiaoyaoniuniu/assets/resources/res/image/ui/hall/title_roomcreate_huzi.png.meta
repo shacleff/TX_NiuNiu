@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "6b1df099-55c3-415b-a7f7-e50fd6d5a85e",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "title_roomcreate_huzi": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "41ae7c5f-bf19-4f10-813f-61fde0abbef9",
       "rawTextureUuid": "6b1df099-55c3-415b-a7f7-e50fd6d5a85e",
       "trimType": "auto",

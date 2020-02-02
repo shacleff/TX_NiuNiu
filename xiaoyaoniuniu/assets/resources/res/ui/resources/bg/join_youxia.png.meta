@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "50544a5e-694d-46bd-aaac-2c1e21f0c33f",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "join_youxia": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "95f1a470-208c-44f8-a81f-c6e43a6f1c17",
       "rawTextureUuid": "50544a5e-694d-46bd-aaac-2c1e21f0c33f",
       "trimType": "auto",

@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "0b15b542-a18c-443a-9fd7-ce2fd495bf13",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "jiaofen_4": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "e9bec0e3-e389-427a-87da-92329a355abf",
       "rawTextureUuid": "0b15b542-a18c-443a-9fd7-ce2fd495bf13",
       "trimType": "auto",

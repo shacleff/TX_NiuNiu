@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "f9249d4b-98aa-424f-847c-7ea66f173124",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "PHZ_hu_heidi": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b4bd3190-1b55-42fc-ac06-a13b572e58fd",
       "rawTextureUuid": "f9249d4b-98aa-424f-847c-7ea66f173124",
       "trimType": "auto",

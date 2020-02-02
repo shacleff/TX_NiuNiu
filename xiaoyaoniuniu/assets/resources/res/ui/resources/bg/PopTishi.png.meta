@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "ec6ff73b-a517-480b-ab1f-77081f565177",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "PopTishi": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "eba5c0e5-e2f3-423a-81a7-5479546a6a08",
       "rawTextureUuid": "ec6ff73b-a517-480b-ab1f-77081f565177",
       "trimType": "auto",

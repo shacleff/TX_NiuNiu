@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "534a7b64-8fd7-43bf-9335-f7c48d7c18cc",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "button_wuxiaoniu": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "bc040ab4-c8d0-418c-82ae-581618271f2f",
       "rawTextureUuid": "534a7b64-8fd7-43bf-9335-f7c48d7c18cc",
       "trimType": "auto",

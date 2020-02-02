@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "1347174e-e3c0-4734-a6b6-b4f82751f329",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "room2_numbg": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "eb405fbc-72f1-455e-9d6a-f22246f047f0",
       "rawTextureUuid": "1347174e-e3c0-4734-a6b6-b4f82751f329",
       "trimType": "auto",

@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "82f7eb27-3fc5-44f0-b3e2-ad1610c734be",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "guanbi": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "573f4a32-f72b-4fdf-ac39-e725054a53f0",
       "rawTextureUuid": "82f7eb27-3fc5-44f0-b3e2-ad1610c734be",
       "trimType": "auto",

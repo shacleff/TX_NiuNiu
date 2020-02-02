@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "25a68d07-ee92-4edf-aa61-f161cf629d1c",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "tishiBg": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "398df645-3aaa-4735-a9c9-632d02e3b35d",
       "rawTextureUuid": "25a68d07-ee92-4edf-aa61-f161cf629d1c",
       "trimType": "auto",

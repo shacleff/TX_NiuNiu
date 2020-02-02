@@ -51,7 +51,7 @@ cc.Class({
     enterWaitJieSan: function () {
         let action1 = cc.fadeOut(0.4);
         this.okButton.runAction(action1);
-        let action2 = cc.moveTo(0.4,cc.p(0,-115));
+        let action2 = cc.moveTo(0.4,cc.v2(0,-115));
         this.cancelButton.runAction(action2);
         this.tipsLabel.string = "取消解散!";
     }

@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "f5e1c659-32c3-4e2c-8ccb-fe2d65c9ccab",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "sp_tanhao": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "09b024d7-c43e-4f3e-8cd9-be0eab7b0e4b",
       "rawTextureUuid": "f5e1c659-32c3-4e2c-8ccb-fe2d65c9ccab",
       "trimType": "auto",

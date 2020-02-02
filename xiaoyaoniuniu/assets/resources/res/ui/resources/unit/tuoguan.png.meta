@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "c7ec3dbf-d876-4dcd-aa49-f6f015f56ea5",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "tuoguan": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "23bf5155-f0c6-41fd-9ae0-28718ee35dcc",
       "rawTextureUuid": "c7ec3dbf-d876-4dcd-aa49-f6f015f56ea5",
       "trimType": "auto",

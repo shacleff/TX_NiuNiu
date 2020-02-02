@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "1258ee08-abaf-438c-818e-fb31108e05c7",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "zhaozi": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "1bf85bb2-5425-441c-a625-cb7b253adadc",
       "rawTextureUuid": "1258ee08-abaf-438c-818e-fb31108e05c7",
       "trimType": "auto",

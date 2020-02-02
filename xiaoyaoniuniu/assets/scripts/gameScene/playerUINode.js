@@ -151,7 +151,7 @@ cc.Class({
                 if (currentData.number === cardData.number && currentData.color === cardData.color){
                     console.log('两张牌相等');
                     //数字跟花色都相等，找到了这张牌 。将这张牌提高
-                    card.position = cc.p(card.position.x , 20);
+                    card.position = cc.v2(card.position.x , 20);
                     //提高牌
                 }
 
@@ -178,14 +178,14 @@ cc.Class({
             console.log('一秒之后 运行别的逻辑');
             for (let i = 0 ; i < this.cardsList.length ; i ++){
                 let card = this.cardsList[i];
-                card.position = cc.p(card.position.x, 0);
+                card.position = cc.v2(card.position.x, 0);
             }
             //
 
 
             let tempList = [this.cardsNode, this.cowValueBg];
             for (let i = 0 ; i < tempList.length ; i ++){
-                let action1 = cc.moveTo(0.2, cc.p(0, -100));
+                let action1 = cc.moveTo(0.2, cc.v2(0, -100));
                 let action2 = cc.scaleTo(0.3, 0.6, 0.6);
                 action2.easing(cc.easeBackInOut());
                 tempList[i].runAction(action1);
@@ -204,13 +204,13 @@ cc.Class({
         //     let card = cc.instantiate(this.cardPrefab);
         //     card.getComponent('card').initWithData(data[i]);
         //     card.parent = this.cardsNode;
-        //     card.position = cc.p(135 * (5 - 1) * -0.5 + 135 * i,0);
+        //     card.position = cc.v2(135 * (5 - 1) * -0.5 + 135 * i,0);
         //     this.cardsList.push(card);
         // }
         // this.showCardsValue();
         let index = 0;
         for (let i = 0 ; i < data.length ; i ++){
-            this.createOneCardWithAction(i * 0.1, data[i], cc.p(135 * (5 - 1) * - 0.5 + 135 * i, 0), function () {
+            this.createOneCardWithAction(i * 0.1, data[i], cc.v2(135 * (5 - 1) * - 0.5 + 135 * i, 0), function () {
                 index ++;
                 if (index === data.length){
                     if (cb){
@@ -350,8 +350,8 @@ cc.Class({
                 this.cowValueBg.active = false;
                 this.cowValueBg.scale = 1;
                 this.cardsNode.scale = 1;
-                this.cardsNode.position = cc.p(0,-250);
-                this.cowValueBg.position = cc.p(0, -250);
+                this.cardsNode.position = cc.v2(0,-250);
+                this.cowValueBg.position = cc.v2(0, -250);
 
                 //ui按钮设置成初始状态
                 this.chooseCowButtons.active = false;

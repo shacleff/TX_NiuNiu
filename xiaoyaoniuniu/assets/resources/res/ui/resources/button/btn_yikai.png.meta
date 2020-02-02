@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "c65274fa-e7c6-48ad-a364-e4caf624c5c9",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "btn_yikai": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "b130a849-3aa9-40b5-ad1c-1e62109a4e4d",
       "rawTextureUuid": "c65274fa-e7c6-48ad-a364-e4caf624c5c9",
       "trimType": "auto",

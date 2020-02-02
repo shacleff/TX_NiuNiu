@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "b960cfb3-2513-4e96-9853-6d91ab73aff8",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "huangtiao": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "bfe32c85-09b7-4ccb-8684-9e16a9403983",
       "rawTextureUuid": "b960cfb3-2513-4e96-9853-6d91ab73aff8",
       "trimType": "auto",

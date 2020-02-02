@@ -78,7 +78,7 @@ cc.Class({
             let label =  cc.instantiate(this.scoreLabel);
             label.getComponent('scoreLabel').initWithData(global.turnGameResult[i]);
             label.parent = this.parentNode;
-            label.position = cc.p(0, 74 + i * -70);
+            label.position = cc.v2(0, 74 + i * -70);
         }
         this.timeCutDown = 12;
         if (global.account.playerData.lastRoundCount === 0){

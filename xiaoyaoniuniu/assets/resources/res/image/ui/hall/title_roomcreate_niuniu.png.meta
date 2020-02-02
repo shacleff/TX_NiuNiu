@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "934a709d-2c6f-424f-a203-2c4d9af153bb",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "title_roomcreate_niuniu": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "a377b797-f020-429f-956a-993e7d71898c",
       "rawTextureUuid": "934a709d-2c6f-424f-a203-2c4d9af153bb",
       "trimType": "auto",

@@ -1,12 +1,16 @@
 {
-  "ver": "1.0.0",
+  "ver": "2.3.3",
   "uuid": "aa4b1422-46ae-4418-88b8-bf353ce846fc",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "PHZ_hu_guang02": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "40f54bcb-3ad7-45ec-9488-d341335d4aa8",
       "rawTextureUuid": "aa4b1422-46ae-4418-88b8-bf353ce846fc",
       "trimType": "auto",

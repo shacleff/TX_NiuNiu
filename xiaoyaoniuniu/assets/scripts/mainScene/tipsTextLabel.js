@@ -18,7 +18,7 @@ cc.Class({
             x: 800,
             y: 0
         };
-        let action = cc.moveTo(20, cc.p(-2000,0));
+        let action = cc.moveTo(20, cc.v2(-2000,0));
         let seq = cc.sequence(action,cc.callFunc(this.runAction.bind(this)));
         this.textLabel.node.runAction(seq);
     }

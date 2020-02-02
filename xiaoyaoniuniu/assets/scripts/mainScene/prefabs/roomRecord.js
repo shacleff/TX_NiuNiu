@@ -25,7 +25,7 @@ cc.Class({
         for (let i = 0 ; i < gameData.length ; i ++){
             let  node = cc.instantiate(this.roomRecordCell);
             node.parent = this.connectNode;
-            node.position = cc.p(0, -220 - i * 280);
+            node.position = cc.v2(0, -220 - i * 280);
             node.getComponent('roomRecordCell').initWithData(i, gameData[i]);
         }
         this.connectNode.height = 280 * gameData.length + 20;

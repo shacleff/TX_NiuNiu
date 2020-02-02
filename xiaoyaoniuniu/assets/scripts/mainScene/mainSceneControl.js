@@ -68,18 +68,18 @@ cc.Class({
             this.houseCardCountLabel.string = global.account.playerData.houseCardCount + ''; //玩家房卡的个数
             let remoteUrl = global.account.playerData.avatarUrl;
             // let remoteUrl = "https://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0";
-            cc.loader.load({url: remoteUrl, type: 'png'}, (err, texture) => {
-                // Use texture to create sprite frame
-                if (err) {
-                    console.log('err = ' + err);
-                } else {
-                    let oldWidth = this.headImage.width;
-                    console.log('old width = ' + oldWidth);
-                    this.headImage.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(texture);
-                    console.log('now width = ' + this.headImage.width);
-                    // this.headImage.scale = 0.2;
-                }
-            });
+            // cc.loader.load({url: remoteUrl, type: 'png'}, (err, texture) => {
+            //     // Use texture to create sprite frame
+            //     if (err) {
+            //         console.log('err = ' + err);
+            //     } else {
+            //         let oldWidth = this.headImage.width;
+            //         console.log('old width = ' + oldWidth);
+            //         this.headImage.getComponent(cc.Sprite).spriteFrame = texture
+            //         console.log('now width = ' + this.headImage.width);
+            //         // this.headImage.scale = 0.2;
+            //     }
+            // });
         }
 
         //测试分享截图 代码
@@ -127,15 +127,15 @@ cc.Class({
         // let remoteUrl = "https://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0";
         cc.loader.load({url: remoteUrl, type: 'png'}, (err, texture) => {
             // Use texture to create sprite frame
-            if (err) {
-                console.log('err = ' + err);
-            } else {
-                let oldWidth = this.headImage.width;
-                console.log('old width = ' + oldWidth);
-                this.headImage.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(texture);
-                console.log('now width = ' + this.headImage.width);
-                // this.headImage.scale = 0.2;
-            }
+            // if (err) {
+            //     console.log('err = ' + err);
+            // } else {
+            //     let oldWidth = this.headImage.width;
+            //     console.log('old width = ' + oldWidth);
+            //     this.headImage.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(texture);
+            //     console.log('now width = ' + this.headImage.width);
+            //     // this.headImage.scale = 0.2;
+            // }
         });
     },
     onDestroy: function () {
