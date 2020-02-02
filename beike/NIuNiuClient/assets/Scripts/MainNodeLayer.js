@@ -4,7 +4,7 @@ cc.Class({
 
     properties: {
         playerNodePrefab: cc.Prefab,
-        healthGameTipsLabel: cc.Node
+        healthGameTipLabel: cc.Node
     },
     onLoad () {
         let playerNode = cc.instantiate(this.playerNodePrefab);
@@ -37,15 +37,16 @@ cc.Class({
         ws.onerror = function(result){
             console.log("on error", result);
         }
-       
-        this.healthGameTipsLabel.runAction(
-            cc.repeatForever(cc.sequence(
-                cc.moveTo(15,-1200,0),
-                cc.callFunc(()=>{
-                    this.healthGameTipsLabel.x = 1200;
-                })
-            ))
-        )
+       this.healthGameTipLabel.runAction(
+           cc.repeatForever(
+               cc.sequence(
+                   cc.moveTo(15, -1200, 0),
+                   cc.callFunc(()=>{
+                       this.healthGameTipLabel.x = 1200;
+                   })
+               )
+           )
+       )
        
     },
     onButtonClick(event, customData){
