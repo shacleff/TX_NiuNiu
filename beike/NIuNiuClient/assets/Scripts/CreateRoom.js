@@ -2,10 +2,13 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+
     },
     onLoad() {
         this._roundCountType = 'round-count-10';
-    
+        this._bankerType = 'banker-type-1';
+        this._kouType = 'kou-type-1';
+        this._rateType = 'rate-type-0';
     },
     start() {
 
@@ -15,22 +18,32 @@ cc.Class({
         switch (customData) {
             case 'close':
                 this.node.destroy();
-                break;
             case 'create':
-
                 let data = {
-                    roundCountType: this._roundCountType
+                    roundCountType: this._roundCountType,
+                    bankerType : this._bankerType,
+                    kouType: this._kouType,
+                    rateType: this._rateType
                 }
-                console.log("data", data);
+                console.log("create room with data", data);
+
 
                 this.node.destroy();
-                break;    
+                break;
             default:
                 break;
         }
         if (customData.indexOf("round-count") > -1){
-            console.log("选择局数")
             this._roundCountType = customData;
+        }
+        if (customData.indexOf("banker-type") > -1){
+            this._bankerType = customData;
+        }
+        if (customData.indexOf("kou-type") > -1){
+            this._kouType = customData;
+        }
+        if (customData.indexOf("rate-type") > -1){
+            this._rateType = customData;
         }
     },
     update(dt) { }
