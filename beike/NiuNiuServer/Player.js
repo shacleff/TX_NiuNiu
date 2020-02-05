@@ -18,14 +18,23 @@ class Player {
             let callBackId = messgae.callBackId;
             switch (type) {
                 case 'create-room':
-                    this._controller.getRoomController().createRoom(data).then(()=>{
-                        console.log("create room success");
-                        this._client.send(JSON.stringify({
-                            type: type,
-                            data : 'create room success',
-                            callBackId: callBackId
-                        }))
+                    this._controller.getRoomController().createRoom(data).then((roomId) => {
+                        console.log("create room success", roomId);
+                        this.sendMessage(type, {
+                            roomId: roomId
+                        }, callBackId)
                     });
+                    break;
+                case 'join-room':
+                    console.log("收到了加入房间的消息");
+                    this._controller.getRoomController().requestJoinRoom(data.roomId).then((result) => {
+                        console.log("加入房间成功", JSON.stringify(result));
+                        this.sendMessage(type, result, callBackId);
+                    }).catch((err) => {
+                        console.log("加入房间失败", err);
+                        this.sendMessage(type, err, callBackId);
+
+                    })
                     break;
                 default:
                     break;
@@ -46,6 +55,13 @@ class Player {
             nickname: this._nickName,
             housecard_count: this._housecardCount
         }
+    }
+    sendMessage(type, data, callBackId) {
+        this._client.send(JSON.stringify({
+            type: type,
+            data: data,
+            callBackId: callBackId
+        }))
     }
 }
 module.exports = Player

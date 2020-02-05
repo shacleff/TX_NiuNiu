@@ -31,8 +31,9 @@ cc.Class({
                 console.log("create room with data", data);
                 global.messageController.sendCreateRoomMessage(data).then((result)=>{
                     console.log("创建房间成功", result);
-                    global.controller.enterGameLayer();
-                    this.node.destroy();
+                    // global.controller.enterGameLayer();
+                    // this.node.destroy();
+                    return global.messageController.sendJoinRoomMessage(result.roomId);
                 });
 
                 

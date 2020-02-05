@@ -5,14 +5,13 @@ class RoomController {
     }
     createRoom(data){
         console.log("room controller create room", JSON.stringify(data));
-        // return new Promise(()=>{
-
-        //     new room = new Room(id,data);
-        // })
         return this.getNewRoomId().then((id)=>{
             console.log("new room id = ", id);
             let room = new Room(id, data);
             this._roomList.push(room);
+            return new Promise((resolse)=>{
+                resolse(id);
+            })
         })
     }
     getNewRoomId(){
@@ -38,5 +37,11 @@ class RoomController {
             getStr(resolse);
         });
     }
+    requestJoinRoom(roomId){
+        console.log("请求进入房间", roomId);
+        return new Promise(()=>{
+            
+        })
+    }   
 }
 module.exports = RoomController;

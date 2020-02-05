@@ -1,12 +1,12 @@
 //负责接收发送跟服务端通讯的所有操作
 class MessageController {
-    constructor(){
+    constructor() {
         this._callBackId = 1;
         this._callBackMap = {};
     }
-    connectServer(){
+    connectServer() {
         console.log("请求链接服务器");
-        return new Promise((resole, reject)=>{
+        return new Promise((resole, reject) => {
             let ws = new WebSocket("ws://47.105.205.9:3001");
             ws.onopen = function (result) {
                 console.log("on open ", result);
@@ -21,7 +21,7 @@ class MessageController {
             }
             ws.onmessage = function (result) {
                 console.log("on message", result.data);
-    
+
                 let message = JSON.parse(result.data);
                 let type = message.type;
                 let data = message.data;
@@ -39,34 +39,46 @@ class MessageController {
             this._ws = ws;
         });
     }
-    processMessage(type, data, callBackId){
+    processMessage(type, data, callBackId) {
         let cb = this._callBackMap[callBackId];
         cb(data);
     }
-    login(id){
-        return new Promise((resole, reject)=>{
+    login(id) {
+        return new Promise((resole, reject) => {
             this.sendMessage('login', {
                 id: id
-            }, (result)=>{
+            }, (result) => {
                 console.log("send Message Success", result);
                 resole(result);
             });
         });
     }
-    sendCreateRoomMessage(data){
-        return new Promise((resole, reject)=>{
+    sendCreateRoomMessage(data) {
+        return new Promise((resole, reject) => {
             this.sendMessage(
                 'create-room',
-                data, 
-                (result)=>{
+                data,
+                (result) => {
                     // console.log("创建房间成功")
                     resole(result);
                 }
             )
         });
-       
+
     }
-    sendMessage(type, data, cb){
+    sendJoinRoomMessage(roomId) {
+        console.log("发送进入房间的消息", roomId);
+        return new Promise((resole, reject) => {
+            this.sendMessage(
+                'join-room',
+                {
+                    roomId: roomId
+                },
+                resole
+            )
+        });
+    }
+    sendMessage(type, data, cb) {
         let message = {
             type: type,
             data: data,
@@ -74,7 +86,7 @@ class MessageController {
         }
         this._callBackMap[this._callBackId] = cb;
         this._ws.send(JSON.stringify(message));
-        this._callBackId ++;
+        this._callBackId++;
     }
 }
 export default MessageController;
