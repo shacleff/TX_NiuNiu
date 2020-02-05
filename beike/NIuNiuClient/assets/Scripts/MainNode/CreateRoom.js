@@ -33,7 +33,10 @@ cc.Class({
                     console.log("创建房间成功", result);
                     // global.controller.enterGameLayer();
                     // this.node.destroy();
-                    return global.messageController.sendJoinRoomMessage(result.roomId);
+                    let roomId = result.roomId;
+                    return global.messageController.sendJoinRoomMessage(roomId)
+                }).then(()=>{
+                    console.log("加入房间消息发送成功");
                 });
 
                 
