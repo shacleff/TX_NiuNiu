@@ -20,6 +20,7 @@ cc.Class({
         switch (customData) {
             case 'close':
                 this.node.destroy();
+                break;
             case 'create':
                 let data = {
                     roundCountType: this._roundCountType,
@@ -28,9 +29,12 @@ cc.Class({
                     rateType: this._rateType
                 }
                 console.log("create room with data", data);
+                global.messageController.sendCreateRoomMessage(data).then(()=>{
+                    console.log("创建房间成功");
+                    this.node.destroy();
 
-                global.messageController.sendCreateRoomMessage(data);
-                this.node.destroy();
+                });
+
                 break;
             default:
                 break;

@@ -1,10 +1,12 @@
 const ws = require("nodejs-websocket")
-let MessageController = require('./MessageController');
+let MessageController = require('./MessageController')
 let RoomController = require('./RoomController')
+let PlayerController = require('./PlayerController')
 let DB = require('./db');
 let db = new DB();
 let roomController = new RoomController();
-let messageController = new MessageController(db, roomController);
+let playerController = new PlayerController(db, roomController);
+let messageController = new MessageController(db, playerController);
 let websocket = ws.createServer(function(client){
     console.log("new client connect");
     client.on("text", (result)=>{

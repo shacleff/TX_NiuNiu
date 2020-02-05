@@ -54,12 +54,16 @@ class MessageController {
         });
     }
     sendCreateRoomMessage(data){
-        return new Promise((resole)=>{
-            this.sendMessage("create-room", data, (result)=>{
-                console.log("创建房间成功", result);
-                resole();
-            })
+        return new Promise((resole, reject)=>{
+            this.sendMessage(
+                'create-room',
+                data, 
+                ()=>{
+                    resole();
+                }
+            )
         });
+       
     }
     sendMessage(type, data, cb){
         let message = {
