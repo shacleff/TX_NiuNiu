@@ -1,41 +1,39 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+import global from "../global";
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        roomIdLabel: cc.Node,
+        roundCountLabel: cc.Node,
+        kouCountLabel: cc.Node,
+        bankerTypeLabel: cc.Node,
+        rateConfigLabel: cc.Node,
+        gameConfig: cc.JsonAsset
     },
-
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
+    onLoad () {},
 
     start () {
+        global.messageController.sendRequestRoomInfoMessage().then((result)=>{
+            console.log("请求房间信息成功", result);
+            this.roomIdLabel.getComponent(cc.Label).string = "房间号:" + result.roomId;
+            this.roundCountLabel.getComponent(cc.Label).string = "总局数:" + result.roundCount + " 当前局数:0";
+            this.kouCountLabel.getComponent(cc.Label).string = "扣牌的个数:" + result.kouCount;
+            let BankerNameConfig = this.gameConfig.json.BankerNameConfig;
+            this.bankerTypeLabel.getComponent(cc.Label).string = "坐庄类型:" + BankerNameConfig[result.bankerType];
+            // this.bankerTypeLabel.getComponent(cc.Label).string = "坐庄类型:" + 
+            // this.rateConfigLabel.getComponent(cc.Label).string = "倍数:" + "" 
+            let NiuNiuConfig = this.gameConfig.json.NiuNiuNameConfig;
+            console.log("niu niu config", NiuNiuConfig);
+            let rateConfigStr = '倍数:';
+            for (let i in NiuNiuConfig){
+                let rateConfig = result.rateConfig;
+                let value = rateConfig[i];
+                rateConfigStr += NiuNiuConfig[i] + 'X' + value;
+            }
+            this.rateConfigLabel.getComponent(cc.Label).string = rateConfigStr;
+        })
+    },  
 
-    },
-
-    // update (dt) {},
+    update (dt) {}
 });

@@ -1,0 +1,13 @@
+{
+    "NiuNiuNameConfig": {
+        "niuniu": "牛牛",
+        "niujiu": "牛九",
+        "niuba": "牛八",
+        "niuqi": "牛七"
+    },
+    "BankerNameConfig": {
+        "banker-type-0": "连庄",
+        "banker-type-1": "轮庄",
+        "banker-type-2": "霸王庄"
+    }
+}
