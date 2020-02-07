@@ -72,13 +72,19 @@ class MessageController {
        
     }
     sendJoinRoomMessage(roomId){
-        return new Promise((resole)=>{
+        return new Promise((resole, reject)=>{
             this.sendMessage(
                 'join-room',
                 {
                     roomId: roomId
                 },
-               resole
+               (result)=>{
+                    if (result.err){
+                        reject(result.err)
+                    }else{
+                        resole(result);
+                    }
+               }
             )
         });
     }

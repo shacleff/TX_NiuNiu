@@ -4,7 +4,8 @@ cc.Class({
     extends: cc.Component,
     properties: {
        mainNodeLayerPrefab: cc.Prefab,
-       gameLayerPrefab: cc.Prefab
+       gameLayerPrefab: cc.Prefab,
+       alertNodePrefab: cc.Prefab
     },
     onLoad () {
         // let node = cc.instantiate(this.mainNodeLayerPrefab);
@@ -15,6 +16,12 @@ cc.Class({
         });
         this.node.on("enter-main-node-layer", ()=>{
             this.enterLayer(this.mainNodeLayerPrefab);
+        });
+        this.node.on("show-alert", (err)=>{
+            console.log("显示提示", err);
+            let node = cc.instantiate(this.alertNodePrefab);
+            node.parent = this.node;
+            node.emit("show-text", err);
         });
     },
     enterLayer(prefab){
