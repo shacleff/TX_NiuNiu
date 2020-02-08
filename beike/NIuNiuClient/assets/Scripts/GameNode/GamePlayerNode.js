@@ -7,7 +7,8 @@ cc.Class({
         nickNameLabel: cc.Node,
         headNode: cc.Node,
         idLabel: cc.Node,
-        gameConfig: cc.JsonAsset
+        gameConfig: cc.JsonAsset,
+        houseMasterMark: cc.Node
     },
 
 
@@ -22,9 +23,17 @@ cc.Class({
             this.idLabel.getComponent(cc.Label).string = "ID:" + id;
             this.updateHeadImage(info.headImageUrl);
         });
-        this.node.on('update-position', (index, selfIndex, count) => {
+        this.node.on('update-info', (info, index, selfIndex, count) => {
+
+            let id = info.id;
+            this._id = id;
+            let nickName = info.nickname;
+            this.nickNameLabel.getComponent(cc.Label).string = nickName;
+            this.idLabel.getComponent(cc.Label).string = "ID:" + id;
+            this.updateHeadImage(info.headImageUrl);
             console.log("index = ", index);
             console.log("self index", selfIndex);
+            this.houseMasterMark.active = info.isHouseMaster;
             let config = this.playerNodePositionConfig[count];
             let currentIndex = selfIndex - index;
             if (currentIndex < 0) {

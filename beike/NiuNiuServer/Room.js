@@ -20,7 +20,19 @@ class Room {
     }
     addPlayer(player) {
         this._playerList.push(player);
+        // this._playerList[0].
+        this.updateHouseMaster();
         player.setCurrentRoom(this);
+    }
+    updateHouseMaster(){
+        for (let i = 0 ; i < this._playerList.length ; i ++){
+            let player  = this._playerList[i];
+            if (i === 0){
+                player.setHouseMaster(true)
+            }else{
+                player.setHouseMaster(false);
+            }
+        }
     }
     getRoomInfo() {
         // let playersInfo = [];
@@ -58,6 +70,19 @@ class Room {
             player.sendMessage("sync-all-player-info", playerInfoList, 0);
         }
 
+    }
+    playerExitRoom(player){
+        let exitResult = '玩家未在房间里面';
+        for (let i = 0 ; i < this._playerList.length ; i ++){
+            let target = this._playerList[i];
+            if (player.getId() === target.getId()){
+                this._playerList.splice(i, 1);
+                exitResult = true;
+                break;
+            }
+        }
+        this.updateHouseMaster();
+        return exitResult;
     }
 }
 module.exports = Room;

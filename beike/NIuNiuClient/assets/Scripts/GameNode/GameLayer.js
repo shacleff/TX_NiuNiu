@@ -22,26 +22,26 @@ cc.Class({
             let length = this._playerNodeList.length;
             for (let i = 0; i < count; i++) {
                 let info = data[length + i];
-                this.addPlayerNode(info, length + i);
+                this.addPlayerNode(info);
             }
         }
-         
-        if (count < 0){
-            for (let i = 0 ; i < Math.abs(count) ; i ++){
+
+        if (count < 0) {
+            for (let i = 0; i < Math.abs(count); i++) {
                 let node = this._playerNodeList.pop();
                 node.destroy();
             }
         }
         let selfIndex = 0;
-        for (let i = 0 ; i < data.length; i ++){
-             if (data[i].id === global.playerData.getID()){
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].id === global.playerData.getID()) {
                 selfIndex = i;
             }
         }
 
-        for (let i = 0 ; i < this._playerNodeList.length ; i ++){
+        for (let i = 0; i < this._playerNodeList.length; i++) {
             let playerNode = this._playerNodeList[i];
-            playerNode.emit("update-position",i,selfIndex,this._playerNodeList.length);
+            playerNode.emit("update-info",data[i], i, selfIndex, this._playerNodeList.length);
         }
 
     },
@@ -73,8 +73,23 @@ cc.Class({
     addPlayerNode(info, index) {
         let node = cc.instantiate(this.gamePlayerNodePrefab);
         node.parent = this.node;
-        node.emit("init-player-node", info, index);
+        // node.emit("init-player-node", info, index);
         this._playerNodeList.push(node);
+    },
+    onButtonClick(event, customData) {
+        switch (customData) {
+            case "exit-room":
+                console.log("玩家点击了退出房间的按钮");
+                global.messageController.sendExitRoomMessage().then((result)=>{
+                    console.log("退出房间成功", result);
+                    global.controller.enterMainNodeLayer();
+                }).catch((err)=>{
+                    console.log("退出房间异常", err);
+                });
+                break;
+            default:
+                break;
+        }
     },
     update(dt) { }
 });

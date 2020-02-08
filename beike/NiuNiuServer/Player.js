@@ -8,6 +8,7 @@ class Player {
         this._headImageUrl = spec.head_image_url;
         this._controller = controller;
         this._room = undefined;
+        this._isHouseMaster = false;
         this.resgisterMessage(client);
     }
     resgisterMessage(client) {
@@ -47,7 +48,18 @@ class Player {
                     let roomInfo = this._room.getRoomInfo();
                     this.sendMessage(type, roomInfo, callBackId);
                     this._room.syncAllPlayerInfo();
-                    break;     
+                    break;  
+                case 'exit-room':
+                    let exitResult = this._room.playerExitRoom(this);
+                    console.log("退出房间", exitResult);
+                    if (exitResult === true){
+                        this.sendMessage(type, exitResult, callBackId);
+                        this._room.syncAllPlayerInfo();
+                        this._room = undefined;
+                    }else{
+                        this.sendMessage(type, {err: exitResult}, callBackId);
+                    }
+                    break;       
                 default:
                     break;
             }
@@ -69,8 +81,12 @@ class Player {
             id: this._id,
             nickname: this._nickName,
             housecard_count: this._housecardCount,
-            headImageUrl: this._headImageUrl
+            headImageUrl: this._headImageUrl,
+            isHouseMaster: this._isHouseMaster
         }
+    }
+    setHouseMaster(value){
+        this._isHouseMaster = value;
     }
     sendMessage(type, data, callBackId){
         this._client.send(JSON.stringify({
