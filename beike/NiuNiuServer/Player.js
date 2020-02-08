@@ -59,7 +59,17 @@ class Player {
                     }else{
                         this.sendMessage(type, {err: exitResult}, callBackId);
                     }
-                    break;       
+                    break;      
+                case 'request-start-game':
+                    //请求开始游戏
+                    let startResult = this._room.playerRequestStartGame(this);
+                    if (startResult === true){
+                        this.sendMessage(type, startResult, callBackId);
+                    }else{
+                        this.sendMessage(type, {err: startResult}, callBackId);
+                    }
+
+                    break;     
                 default:
                     break;
             }

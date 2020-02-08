@@ -23,12 +23,12 @@ class Room {
         player.setCurrentRoom(this);
         this.updateHouseMaster();
     }
-    updateHouseMaster(){
-        for (let i = 0 ; i < this._playerList.length ; i ++){
+    updateHouseMaster() {
+        for (let i = 0; i < this._playerList.length; i++) {
             let player = this._playerList[i];
-            if (i === 0 ){
+            if (i === 0) {
                 player.setHouseMaster(true)
-            }else{
+            } else {
                 player.setHouseMaster(false);
             }
         }
@@ -57,23 +57,23 @@ class Room {
             return '房间已经开始，不允许在加入';
         }
     }
-    syncAllPlayerInfo(){
+    syncAllPlayerInfo() {
         let playerInfoList = [];
-        for (let i = 0 ; i < this._playerList.length ; i ++){
+        for (let i = 0; i < this._playerList.length; i++) {
             let playerInfo = this._playerList[i].getPlayerInfo();
             playerInfoList.push(playerInfo);
         }
-        for (let i = 0 ; i < this._playerList.length ; i ++){
+        for (let i = 0; i < this._playerList.length; i++) {
             let player = this._playerList[i];
             player.sendMessage("sync-all-player-info", playerInfoList, 0);
         }
 
     }
-    playerExitRoom(player){
+    playerExitRoom(player) {
         let exitResult = '玩家未在房间里面';
-        for (let i = 0 ; i < this._playerList.length ; i ++){
+        for (let i = 0; i < this._playerList.length; i++) {
             let target = this._playerList[i];
-            if (player.getId() === target.getId()){
+            if (player.getId() === target.getId()) {
                 this._playerList.splice(i, 1);
                 exitResult = true;
                 break;
@@ -81,6 +81,16 @@ class Room {
         }
         this.updateHouseMaster();
         return exitResult;
+    }
+    playerRequestStartGame(player) {
+        let result = true;
+        if (this._playerList[0].getId() !== player.getId()) {
+            result = '你不是房主，无法开始游戏'
+        }
+        if (this._state !== 'wait'){
+            result = '游戏已经开始，不能在此开始'
+        }
+        return result;
     }
 }
 module.exports = Room;

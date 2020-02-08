@@ -42,14 +42,14 @@ cc.Class({
 
         for (let i = 0; i < this._playerNodeList.length; i++) {
             let playerNode = this._playerNodeList[i];
-            playerNode.emit("update-info", data[i], i, selfIndex, this._playerNodeList.length);
+            playerNode.emit("update-info",data[i], i, selfIndex, this._playerNodeList.length);
         }
 
         if (data[0].id === global.playerData.getID() && data.length > 1){
-            //如果房主的id等于自己的id，那么就需要显示当前的开始游戏的按钮，否则就隐藏
             this.startGameButton.active = true;
-        }else{  
+        }else{
             this.startGameButton.active = false;
+
         }
     },
 
@@ -87,16 +87,21 @@ cc.Class({
         switch (customData) {
             case "exit-room":
                 console.log("玩家点击了退出房间的按钮");
-                global.messageController.sendExitRoomMessage().then((result) => {
+                global.messageController.sendExitRoomMessage().then((result)=>{
                     console.log("退出房间成功", result);
                     global.controller.enterMainNodeLayer();
-                }).catch((err) => {
+                }).catch((err)=>{
                     console.log("退出房间异常", err);
                 });
                 break;
-            case 'start-game':
+            case "start-game":
                 console.log("开始游戏");
-                break;
+                global.messageController.sendRequestStartGameMessage().then((result)=>{
+                    //发送请求开始游戏的消息
+                    console.log("开始游戏成功", result);
+                    this.startGameButton.active = false;
+                });
+                break;    
             default:
                 break;
         }

@@ -126,6 +126,17 @@ class MessageController {
             )
         });
     }
+    sendRequestStartGameMessage(){
+        return new Promise((resole, reject)=>{
+            this.sendMessage('request-start-game', '', (result)=>{
+                if (result.err){
+                    reject(result.err);
+                }else{
+                    resole(result);
+                }
+            });
+        });
+    }
     sendMessage(type, data, cb) {
         let message = {
             type: type,
