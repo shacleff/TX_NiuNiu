@@ -10,7 +10,8 @@ cc.Class({
         bankerTypeLabel: cc.Node,
         rateConfigLabel: cc.Node,
         GameConfig: cc.JsonAsset,
-        gamePlayerNodePrefab: cc.Prefab
+        gamePlayerNodePrefab: cc.Prefab,
+        startGameButton: cc.Node
     },
     onLoad() {
         this._playerNodeList = [];
@@ -22,7 +23,7 @@ cc.Class({
             let length = this._playerNodeList.length;
             for (let i = 0; i < count; i++) {
                 let info = data[length + i];
-                this.addPlayerNode(info);
+                this.addPlayerNode(info, length + i);
             }
         }
 
@@ -41,9 +42,15 @@ cc.Class({
 
         for (let i = 0; i < this._playerNodeList.length; i++) {
             let playerNode = this._playerNodeList[i];
-            playerNode.emit("update-info",data[i], i, selfIndex, this._playerNodeList.length);
+            playerNode.emit("update-info", data[i], i, selfIndex, this._playerNodeList.length);
         }
 
+        if (data[0].id === global.playerData.getID() && data.length > 1){
+            //如果房主的id等于自己的id，那么就需要显示当前的开始游戏的按钮，否则就隐藏
+            this.startGameButton.active = true;
+        }else{  
+            this.startGameButton.active = false;
+        }
     },
 
     start() {
@@ -73,19 +80,22 @@ cc.Class({
     addPlayerNode(info, index) {
         let node = cc.instantiate(this.gamePlayerNodePrefab);
         node.parent = this.node;
-        // node.emit("init-player-node", info, index);
+        node.emit("init-player-node", info, index);
         this._playerNodeList.push(node);
     },
     onButtonClick(event, customData) {
         switch (customData) {
             case "exit-room":
                 console.log("玩家点击了退出房间的按钮");
-                global.messageController.sendExitRoomMessage().then((result)=>{
+                global.messageController.sendExitRoomMessage().then((result) => {
                     console.log("退出房间成功", result);
                     global.controller.enterMainNodeLayer();
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("退出房间异常", err);
                 });
+                break;
+            case 'start-game':
+                console.log("开始游戏");
                 break;
             default:
                 break;
