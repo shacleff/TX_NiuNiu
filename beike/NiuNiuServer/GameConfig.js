@@ -1,8 +1,8 @@
 module.exports = {
     RoomConfig: {
         RoundCount: {
-             "round-count-10": 10,
-             "round-count-20": 20
+            "round-count-10": 10,
+            "round-count-20": 20
         },
         kouCount: {
             "kou-type-0": 5,
@@ -23,9 +23,31 @@ module.exports = {
                 "niuqi": 2
             }
         }
-
     },
     GameConfig: {
 
+    },
+    PokerConfig: {
+        Number: [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13"
+        ],
+        Color: [
+            "Spade",
+            "Heart",
+            "Diamond",
+            "Club"
+        ]
     }
 }

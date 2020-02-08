@@ -15,7 +15,21 @@ cc.Class({
     },
     onLoad() {
         this._playerNodeList = [];
+        this._roomState = undefined;
         global.messageController.onSyncAllPlayerInfo = this.syncAllPlayerInfo.bind(this);
+        global.messageController.onSyncRoomState = this.syncRoomState.bind(this);
+        global.messageController.onChangeBanker = this.changeBanker.bind(this);
+    },
+    changeBanker(data) {
+        let bankerId = data.bankerId;
+        for (let i = 0; i < this._playerNodeList.length; i++) {
+            let node = this._playerNodeList[i];
+            node.emit("change-banker", bankerId);
+        }
+    },
+    syncRoomState(data) {
+        this._roomState = data;
+        console.log("同步到了房间的状态是", this._roomState);
     },
     syncAllPlayerInfo(data) {
         let count = data.length - this._playerNodeList.length;
@@ -42,12 +56,12 @@ cc.Class({
 
         for (let i = 0; i < this._playerNodeList.length; i++) {
             let playerNode = this._playerNodeList[i];
-            playerNode.emit("update-info",data[i], i, selfIndex, this._playerNodeList.length);
+            playerNode.emit("update-info", data[i], i, selfIndex, this._playerNodeList.length);
         }
 
-        if (data[0].id === global.playerData.getID() && data.length > 1){
+        if (data[0].id === global.playerData.getID() && data.length > 1) {
             this.startGameButton.active = true;
-        }else{
+        } else {
             this.startGameButton.active = false;
 
         }
@@ -87,21 +101,21 @@ cc.Class({
         switch (customData) {
             case "exit-room":
                 console.log("玩家点击了退出房间的按钮");
-                global.messageController.sendExitRoomMessage().then((result)=>{
+                global.messageController.sendExitRoomMessage().then((result) => {
                     console.log("退出房间成功", result);
                     global.controller.enterMainNodeLayer();
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("退出房间异常", err);
                 });
                 break;
             case "start-game":
                 console.log("开始游戏");
-                global.messageController.sendRequestStartGameMessage().then((result)=>{
-                    //发送请求开始游戏的消息
-                    console.log("开始游戏成功", result);
+                global.messageController.sendRequesrStartGameMessage().then(() => {
                     this.startGameButton.active = false;
-                });
-                break;    
+                }).catch(() => {
+
+                })
+                break;
             default:
                 break;
         }

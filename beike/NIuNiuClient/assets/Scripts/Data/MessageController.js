@@ -42,12 +42,25 @@ class MessageController {
     onSyncAllPlayerInfo(){
         console.warn("on sync all player info");
     }
+    onSyncRoomState(){
+        console.warn("on sync room state");
+    }
+    onChangeBanker(){
+        console.warn("on change banker");
+    }
     processMessage(type, data, callBackId) {
         switch (type) {
             case 'sync-all-player-info':
                 console.log("收到服务器发来的消息", data);
                 this.onSyncAllPlayerInfo(data);
                 break;
+            case 'sync-room-state':
+                //同步房间状态
+                this.onSyncRoomState(data);
+                break;    
+            case 'change-banker':
+                this.onChangeBanker(data);
+                break;    
             default:
                 break;
         }
@@ -126,16 +139,16 @@ class MessageController {
             )
         });
     }
-    sendRequestStartGameMessage(){
-        return new Promise((resole, reject)=>{
-            this.sendMessage('request-start-game', '', (result)=>{
+    sendRequesrStartGameMessage(){
+        return new Promise((resole ,reject)=>{
+            this.sendMessage('requet-start-game', '', (result)=>{
                 if (result.err){
-                    reject(result.err);
+                    reject(result.err)
                 }else{
                     resole(result);
                 }
             });
-        });
+        })
     }
     sendMessage(type, data, cb) {
         let message = {

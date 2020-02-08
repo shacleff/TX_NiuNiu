@@ -8,7 +8,8 @@ cc.Class({
         headNode: cc.Node,
         idLabel: cc.Node,
         gameConfig: cc.JsonAsset,
-        houseMasterMark: cc.Node
+        houseMasterMark: cc.Node,
+        bankerIcon: cc.Node
     },
 
 
@@ -42,6 +43,13 @@ cc.Class({
             this.node.x = config[currentIndex].x;
             this.node.y = config[currentIndex].y;
         });
+        this.node.on('change-banker', (bankerId)=>{
+            console.log("切换庄家", bankerId);
+            this.bankerIcon.active = false;
+            if (this._id === bankerId){
+                this.bankerIcon.active = true;
+            }
+        })
     },
 
     updateHeadImage(url) {

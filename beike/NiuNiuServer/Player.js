@@ -9,6 +9,7 @@ class Player {
         this._controller = controller;
         this._room = undefined;
         this._isHouseMaster = false; //是不是房主
+        this._isBanker = false;//不是庄家
         this.resgisterMessage(client);
     }
     resgisterMessage(client) {
@@ -21,7 +22,7 @@ class Player {
             let callBackId = messgae.callBackId;
             switch (type) {
                 case 'create-room':
-                    this._controller.getRoomController().createRoom(data).then((roomId)=>{
+                    this._controller.getRoomController().createRoom(data).then((roomId) => {
                         console.log("create room success");
                         // this._client.send(JSON.stringify({
                         //     type: type,
@@ -30,55 +31,54 @@ class Player {
                         //     },
                         //     callBackId: callBackId
                         // }))
-                        this.sendMessage(type, {roomId: roomId}, callBackId);
+                        this.sendMessage(type, { roomId: roomId }, callBackId);
                     });
                     break;
                 case 'join-room':
                     console.log("客户端发来了 ，加入房间的消息 ", JSON.stringify(data));
-                    this._controller.getRoomController().requestJoinRoom(data.roomId, this).then((result)=>{
+                    this._controller.getRoomController().requestJoinRoom(data.roomId, this).then((result) => {
                         console.log("加入房间成功", JSON.stringify(result));
                         this.sendMessage(type, '加入房间成功', callBackId);
-                    }).catch((err)=>{
+                    }).catch((err) => {
                         console.log("加入房间失败", err);
-                        this.sendMessage(type,{err: err}, callBackId);
+                        this.sendMessage(type, { err: err }, callBackId);
                     });
-                    break;   
+                    break;
                 case 'request-room-info':
                     //
                     let roomInfo = this._room.getRoomInfo();
                     this.sendMessage(type, roomInfo, callBackId);
                     this._room.syncAllPlayerInfo();
-                    break;  
+                    break;
                 case 'exit-room':
                     let exitResult = this._room.playerExitRoom(this);
                     console.log("退出房间", exitResult);
-                    if (exitResult === true){
+                    if (exitResult === true) {
                         this.sendMessage(type, exitResult, callBackId);
                         this._room.syncAllPlayerInfo();
                         this._room = undefined;
-                    }else{
-                        this.sendMessage(type, {err: exitResult}, callBackId);
+                    } else {
+                        this.sendMessage(type, { err: exitResult }, callBackId);
                     }
-                    break;      
-                case 'request-start-game':
-                    //请求开始游戏
+                    break;
+                case 'requet-start-game':
                     let startResult = this._room.playerRequestStartGame(this);
                     if (startResult === true){
                         this.sendMessage(type, startResult, callBackId);
+                        this._room.syncRoomState();
                     }else{
                         this.sendMessage(type, {err: startResult}, callBackId);
                     }
-
-                    break;     
+                    break;
                 default:
                     break;
             }
         });
     }
-    setHouseMaster(value){
+    setHouseMaster(value) {
         this._isHouseMaster = value;
     }
-    setCurrentRoom(room){
+    setCurrentRoom(room) {
         this._room = room;
     }
     getId() {
@@ -98,12 +98,21 @@ class Player {
             isHouseMaster: this._isHouseMaster
         }
     }
-    sendMessage(type, data, callBackId){
+    setBanker(value){
+        this._isBanker = value;
+    }
+    getIsBanker(){
+        return this._isBanker;
+    }
+    sendMessage(type, data, callBackId) {
         this._client.send(JSON.stringify({
             type: type,
-            data : data,
+            data: data,
             callBackId: callBackId
         }))
+    }
+    sendPushCardsMessage(){
+        
     }
 }
 module.exports = Player

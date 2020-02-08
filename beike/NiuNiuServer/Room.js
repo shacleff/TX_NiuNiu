@@ -1,4 +1,5 @@
-const Config = require('./GameConfig')
+const Config = require('./GameConfig');
+const CardController = require("./CardController");
 class Room {
     constructor(id, data) {
         console.log("创建了新房间 id= ", id);
@@ -84,13 +85,79 @@ class Room {
     }
     playerRequestStartGame(player) {
         let result = true;
-        if (this._playerList[0].getId() !== player.getId()) {
-            result = '你不是房主，无法开始游戏'
+
+        if (player.getId() !== this._playerList[0].getId()) {
+            result = "你不是房主，无法开始游戏！";
         }
-        if (this._state !== 'wait'){
-            result = '游戏已经开始，不能在此开始'
+        if (this._state !== 'wait') {
+            result = '游戏已经开始，不能再次开始！';
         }
+
+        this._state = 'starting';
+        this.startGame();
         return result;
+    }
+    startGame() {
+        //首先确定庄家
+        this.changeBanker();
+
+        //获取一副牌
+        this._cardList = CardController.getOnePackCard();
+        //跟玩家发牌
+        for (let i = 0; i < this._playerList.length; i++) {
+            let handCards = [];
+            for (let j = 0; j < 5; j++) {
+                handCards.push(this._cardList.pop());
+            }
+            let player = this._playerList[i];
+            player.sendPushCardsMessage(handCards, this._kouCount);
+        }
+    }
+    changeBanker() {
+        let currentBankerIndex = -1;
+
+        for (let i = 0 ; i < this._playerList.length ; i ++){
+            if (this._playerList[i].getIsBanker()){
+                currentBankerIndex = i;
+            }
+        }
+        switch (this._bankerType) {
+            case 'banker-type-0':
+                //连庄
+                break;
+            case 'banker-type-1':
+                //轮庄
+               
+                if (currentBankerIndex == this._playerList.length){
+                    currentBankerIndex = 0;
+                }
+                currentBankerIndex ++;
+                break;
+            case 'banker-type-2':
+                //霸王庄
+                currentBankerIndex = 0;
+                break;
+        }
+        let bankerId  = undefined;
+        for (let i = 0 ; i < this._playerList.length ; i ++){
+            let player = this._playerList[i];
+            if (i === currentBankerIndex){
+                player.setBanker(true);
+                bankerId = player.getId();
+            }else{
+                player.setBanker(false);
+            }
+        }
+        for (let i = 0 ; i < this._playerList.length ; i ++){
+            let player = this._playerList[i];
+            player.sendMessage("change-banker", {bankerId: bankerId}, 0);
+        }
+    }
+    syncRoomState() {
+        for (let i = 0; i < this._playerList.length; i++) {
+            let player = this._playerList[i];
+            player.sendMessage("sync-room-state", this._state, 0);
+        }
     }
 }
 module.exports = Room;
