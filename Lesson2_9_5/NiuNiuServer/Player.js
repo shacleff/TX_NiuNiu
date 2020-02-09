@@ -55,6 +55,11 @@ class Player {
                     let roomInfo = this._room.getRoomInfo();
                     this.sendMessage(type, roomInfo, callBackId);
                     this._room.syncAllPlayerInfo();
+                    console.log("this hand card info", JSON.stringify(this._handCardInfo));
+                    if (this._handCardInfo !== undefined){
+                        // this.sendMessage
+                        this.sendMessage('push-card', this._handCardInfo, 0);
+                    }
                     break;
                 case 'exit-room':
                     let exitResult = this._room.playerExitRoom(this);
@@ -119,6 +124,7 @@ class Player {
         for (let i = 0 ; i < handCardList.length ; i ++){
             cardInfoList.push(handCardList[i].getInfo());
         }
+        this._handCardInfo = cardInfoList;
         this.sendMessage('push-card', cardInfoList, 0);
     }
     sendMessage(type, data, callBackId) {

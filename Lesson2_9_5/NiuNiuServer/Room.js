@@ -54,16 +54,22 @@ class Room {
             roundCount: this._roundCount,
             kouCount: this._kouCount,
             rateConfig: this._rateConfig,
-            bankerType: this._bankerType
+            bankerType: this._bankerType,
+            roomState: this._state
             // ,
             // playersInfo: playersInfo
         }
         return roomInfo
     }
-    isCanJoin() {
+    isCanJoin(player) {
         if (this._state === 'wait') {
             return true
         } else {
+            for (let i = 0 ; i < this._playerList.length ; i ++){
+                if (this._playerList[i].getId() === player.getId()){
+                    return true;
+                }
+            }
             return '房间已经开始，不允许在加入';
         }
     }

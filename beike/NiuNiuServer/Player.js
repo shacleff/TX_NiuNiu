@@ -10,8 +10,6 @@ class Player {
         this._room = undefined;
         this._isHouseMaster = false; //是不是房主
         this._isBanker = false;
-        this._kouCount = 0;
-        this._handCardList = undefined;
         this.resgisterMessage(client);
     }
     setBanker(value) {
@@ -57,8 +55,10 @@ class Player {
                     let roomInfo = this._room.getRoomInfo();
                     this.sendMessage(type, roomInfo, callBackId);
                     this._room.syncAllPlayerInfo();
-                    if (this._currentCardInfo){
-                        this.sendMessage('push-card', this._currentCardInfo, 0);
+                    console.log("this hand card info", JSON.stringify(this._handCardInfo));
+                    if (this._handCardInfo !== undefined){
+                        // this.sendMessage
+                        this.sendMessage('push-card', this._handCardInfo, 0);
                     }
                     break;
                 case 'exit-room':
@@ -68,6 +68,7 @@ class Player {
                         this.sendMessage(type, exitResult, callBackId);
                         this._room.syncAllPlayerInfo();
                         this._room = undefined;
+                        this._handCardInfo = undefined;
                     } else {
                         this.sendMessage(type, { err: exitResult }, callBackId);
                     }
@@ -90,11 +91,7 @@ class Player {
         this._isHouseMaster = value;
     }
     setCurrentRoom(room) {
-        if(this._room){
-
-        }else{
-            this._room = room;
-        }
+        this._room = room;
     }
     getId() {
         return this._id;
@@ -119,8 +116,6 @@ class Player {
         }
     }
     sendPushCardMessage(handCardList, kouCount) {
-        this._handCardList = handCardList;
-        this._kouCount = kouCount;
         if (!this._isBanker) {
             for (let i = 0; i < kouCount; i++) {
                 handCardList[handCardList.length - 1 - i].setShow(false);
@@ -130,7 +125,7 @@ class Player {
         for (let i = 0 ; i < handCardList.length ; i ++){
             cardInfoList.push(handCardList[i].getInfo());
         }
-        this._currentCardInfo = cardInfoList;
+        this._handCardInfo = cardInfoList;
         this.sendMessage('push-card', cardInfoList, 0);
     }
     sendMessage(type, data, callBackId) {

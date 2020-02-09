@@ -22,24 +22,29 @@ cc.Class({
         global.messageController.onChangeBanker = this.changeBanker.bind(this);
         global.messageController.onPushCard = this.pushCard.bind(this);
     },
-    pushCard(data){
+    pushCard(data) {
         console.log("push card data", data);
-        for (let i = 0 ; i < data.length ; i ++){
+        for (let i = 0; i < data.length; i++) {
             let info = data[i];
             let card = cc.instantiate(this.cardPrefab);
             card.parent = this.node;
             card.emit('set-info', info);
-            card.x = (5 - 1 )* -0.5 * 100 + i * 100;
+            card.scale = 0.6;
+            card.x = (5 - 1) * -0.5 * 60 + i * 60;
+            card.y = -100;
+        }
+        for (let i = 0 ; i < this._playerNodeList.length ; i ++){
+            this._playerNodeList[i].emit("push-card");
         }
     },
-    changeBanker(data){
+    changeBanker(data) {
         let bankerId = data.bankerId;
-        for (let i = 0 ; i < this._playerNodeList.length ; i ++){
+        for (let i = 0; i < this._playerNodeList.length; i++) {
             let node = this._playerNodeList[i];
             node.emit("change-banker", bankerId);
         }
     },
-    syncRoomState(data){
+    syncRoomState(data) {
         this._roomState = data;
         console.log("同步到了房间的状态是", this._roomState);
     },
@@ -68,12 +73,14 @@ cc.Class({
 
         for (let i = 0; i < this._playerNodeList.length; i++) {
             let playerNode = this._playerNodeList[i];
-            playerNode.emit("update-info",data[i], i, selfIndex, this._playerNodeList.length);
+            playerNode.emit("update-info", data[i], i, selfIndex, this._playerNodeList.length);
         }
-        // console.log("room state = ", this._roomState);
-        if (data[0].id === global.playerData.getID() && data.length > 1 && this._roomState ==='wait'){
+
+        if (data[0].id === global.playerData.getID() &&
+            data.length > 1 &&
+            this._roomState == 'wait') {
             this.startGameButton.active = true;
-        }else{
+        } else {
             this.startGameButton.active = false;
 
         }
@@ -96,12 +103,8 @@ cc.Class({
                 rateStr += name + 'X' + value;
             }
             this.rateConfigLabel.getComponent(cc.Label).string = rateStr;
-            let roomState = result.state;
-            console.log("room state = ", roomState);
-            if (roomState !=='wait'){
-                this.startGameButton.active = false;
-                this._roomState = roomState;
-            }
+            this._roomState = result.roomState;
+
             // let playersInfo = result.playersInfo; 
             // for (let i = 0 ; i < playersInfo.length ; i ++){
             //     let info = playersInfo[i];
@@ -119,21 +122,21 @@ cc.Class({
         switch (customData) {
             case "exit-room":
                 console.log("玩家点击了退出房间的按钮");
-                global.messageController.sendExitRoomMessage().then((result)=>{
+                global.messageController.sendExitRoomMessage().then((result) => {
                     console.log("退出房间成功", result);
                     global.controller.enterMainNodeLayer();
-                }).catch((err)=>{
+                }).catch((err) => {
                     console.log("退出房间异常", err);
                 });
                 break;
             case "start-game":
                 console.log("开始游戏");
-                global.messageController.sendRequesrStartGameMessage().then(()=>{
+                global.messageController.sendRequesrStartGameMessage().then(() => {
                     this.startGameButton.active = false;
-                }).catch(()=>{
+                }).catch(() => {
 
                 })
-                break;    
+                break;
             default:
                 break;
         }

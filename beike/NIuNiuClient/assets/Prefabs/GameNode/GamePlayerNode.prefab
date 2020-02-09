@@ -859,6 +859,12 @@
     "bankerIcon": {
       "__id__": 14
     },
+    "cardPrefab": {
+      "__uuid__": "86722661-bec4-4cc2-a53c-4e2c1043a4ac"
+    },
+    "GameConfig": {
+      "__uuid__": "bbe68d3a-e255-47b7-a95d-3d940700eca9"
+    },
     "_id": ""
   },
   {

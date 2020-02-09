@@ -9,7 +9,9 @@ cc.Class({
         idLabel: cc.Node,
         gameConfig: cc.JsonAsset,
         houseMasterMark: cc.Node,
-        bankerIcon: cc.Node
+        bankerIcon: cc.Node,
+        cardPrefab: cc.Prefab,
+        GameConfig: cc.JsonAsset
     },
 
 
@@ -40,15 +42,34 @@ cc.Class({
             if (currentIndex < 0) {
                 currentIndex = count + currentIndex;
             }
+            this._currentIndex = currentIndex;
             this.node.x = config[currentIndex].x;
             this.node.y = config[currentIndex].y;
+            this._index = index;
+            this._cardPositionConfig = this.gameConfig.json.CardNodePositionConfig[count];
+
         });
-        this.node.on('change-banker', (id)=>{
+        this.node.on('change-banker', (id) => {
             this.bankerIcon.active = false;
-            if (this._id === id){
+            if (this._id === id) {
                 // this.ban
                 this.bankerIcon.active = true;
             }
+        });
+        this.node.on("push-card", () => {
+            if (this._id !== global.playerData.getID()) {
+                for (let i = 0; i < 5; i++) {
+                    let card = cc.instantiate(this.cardPrefab);
+                    card.parent = this.node;
+                    card.emit("set-info", { number: 0, color: "" });
+                    card.scale = 0.4;
+                    let positionConfig = this._cardPositionConfig[this._currentIndex];
+                    card.y = positionConfig.y;
+                    card.x = positionConfig.x + (5 - 1) * -0.5 * 20 + 20 * i;
+
+                }
+            }
+
         });
     },
 
