@@ -9,8 +9,16 @@ class Player {
         this._controller = controller;
         this._room = undefined;
         this._isHouseMaster = false; //是不是房主
-        this._isBanker = false;//不是庄家
+        this._isBanker = false;
+        this._kouCount = 0;
+        this._handCardList = undefined;
         this.resgisterMessage(client);
+    }
+    setBanker(value) {
+        this._isBanker = value;
+    }
+    getIsBanker() {
+        return this._isBanker;
     }
     resgisterMessage(client) {
         console.log("注册消息");
@@ -49,6 +57,9 @@ class Player {
                     let roomInfo = this._room.getRoomInfo();
                     this.sendMessage(type, roomInfo, callBackId);
                     this._room.syncAllPlayerInfo();
+                    if (this._currentCardInfo){
+                        this.sendMessage('push-card', this._currentCardInfo, 0);
+                    }
                     break;
                 case 'exit-room':
                     let exitResult = this._room.playerExitRoom(this);
@@ -63,11 +74,11 @@ class Player {
                     break;
                 case 'requet-start-game':
                     let startResult = this._room.playerRequestStartGame(this);
-                    if (startResult === true){
+                    if (startResult === true) {
                         this.sendMessage(type, startResult, callBackId);
                         this._room.syncRoomState();
-                    }else{
-                        this.sendMessage(type, {err: startResult}, callBackId);
+                    } else {
+                        this.sendMessage(type, { err: startResult }, callBackId);
                     }
                     break;
                 default:
@@ -79,7 +90,11 @@ class Player {
         this._isHouseMaster = value;
     }
     setCurrentRoom(room) {
-        this._room = room;
+        if(this._room){
+
+        }else{
+            this._room = room;
+        }
     }
     getId() {
         return this._id;
@@ -90,19 +105,33 @@ class Player {
         this.resgisterMessage(client);
     }
     getPlayerInfo() {
+        let currentRoomId = "";
+        if (this._room){
+            currentRoomId = this._room.getId();
+        }
         return {
             id: this._id,
             nickname: this._nickName,
             housecard_count: this._housecardCount,
             headImageUrl: this._headImageUrl,
-            isHouseMaster: this._isHouseMaster
+            isHouseMaster: this._isHouseMaster,
+            roomId: currentRoomId
         }
     }
-    setBanker(value){
-        this._isBanker = value;
-    }
-    getIsBanker(){
-        return this._isBanker;
+    sendPushCardMessage(handCardList, kouCount) {
+        this._handCardList = handCardList;
+        this._kouCount = kouCount;
+        if (!this._isBanker) {
+            for (let i = 0; i < kouCount; i++) {
+                handCardList[handCardList.length - 1 - i].setShow(false);
+            }
+        }
+        let cardInfoList = [];
+        for (let i = 0 ; i < handCardList.length ; i ++){
+            cardInfoList.push(handCardList[i].getInfo());
+        }
+        this._currentCardInfo = cardInfoList;
+        this.sendMessage('push-card', cardInfoList, 0);
     }
     sendMessage(type, data, callBackId) {
         this._client.send(JSON.stringify({
@@ -110,9 +139,6 @@ class Player {
             data: data,
             callBackId: callBackId
         }))
-    }
-    sendPushCardsMessage(){
-        
     }
 }
 module.exports = Player

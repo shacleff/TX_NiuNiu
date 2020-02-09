@@ -55,7 +55,7 @@ class RoomController {
         return new Promise((resolse, reject)=>{
             if (target){
                 //找到了房间
-                let isCanJoin = target.isCanJoin();
+                let isCanJoin = target.isCanJoin(player);
                 if (isCanJoin === true){
                     target.addPlayer(player);
                     resolse('加入房间成功');

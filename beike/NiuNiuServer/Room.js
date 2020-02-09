@@ -1,5 +1,5 @@
-const Config = require('./GameConfig');
-const CardController = require("./CardController");
+const Config = require('./GameConfig')
+const CardController  = require('./CardController')
 class Room {
     constructor(id, data) {
         console.log("创建了新房间 id= ", id);
@@ -20,8 +20,17 @@ class Room {
         return this._id;
     }
     addPlayer(player) {
-        this._playerList.push(player);
-        player.setCurrentRoom(this);
+        let isHave = false;
+        for (let i = 0 ; i < this._playerList.length ; i ++){
+            if (player.getId() === this._playerList[i].getId()){
+                isHave = true;
+            }
+        }
+        if (!isHave){
+            this._playerList.push(player);
+            player.setCurrentRoom(this);
+        }
+       
         this.updateHouseMaster();
     }
     updateHouseMaster() {
@@ -45,16 +54,24 @@ class Room {
             roundCount: this._roundCount,
             kouCount: this._kouCount,
             rateConfig: this._rateConfig,
-            bankerType: this._bankerType
+            bankerType: this._bankerType,
+            state: this._state
             // ,
             // playersInfo: playersInfo
         }
         return roomInfo
     }
-    isCanJoin() {
+    isCanJoin(player) {
         if (this._state === 'wait') {
             return true
         } else {
+
+            for (let i = 0 ; i < this._playerList.length ; i ++){
+                if (this._playerList[i].getId() === player.getId()){
+                    return true;
+                }
+            }
+
             return '房间已经开始，不允许在加入';
         }
     }
@@ -98,59 +115,54 @@ class Room {
         return result;
     }
     startGame() {
-        //首先确定庄家
         this.changeBanker();
-
-        //获取一副牌
-        this._cardList = CardController.getOnePackCard();
-        //跟玩家发牌
-        for (let i = 0; i < this._playerList.length; i++) {
-            let handCards = [];
-            for (let j = 0; j < 5; j++) {
-                handCards.push(this._cardList.pop());
-            }
+        this.pushCard();
+    }
+    pushCard(){
+        this._cardList = CardController.getNewPackCard();
+        for (let i = 0 ; i < this._playerList.length ; i ++){
             let player = this._playerList[i];
-            player.sendPushCardsMessage(handCards, this._kouCount);
+            let handCardList = [];
+            for (let i = 0 ; i < 5 ; i ++){
+                handCardList.push(this._cardList.pop());
+            }
+            player.sendPushCardMessage(handCardList, this._kouCount);
         }
     }
     changeBanker() {
         let currentBankerIndex = -1;
-
-        for (let i = 0 ; i < this._playerList.length ; i ++){
-            if (this._playerList[i].getIsBanker()){
+        for (let i = 0; i < this._playerList.length; i++) {
+            let player = this._playerList[i];
+            if (player.getIsBanker()) {
                 currentBankerIndex = i;
             }
         }
+
         switch (this._bankerType) {
             case 'banker-type-0':
                 //连庄
                 break;
             case 'banker-type-1':
                 //轮庄
-               
-                if (currentBankerIndex == this._playerList.length){
+                currentBankerIndex++;
+                if (currentBankerIndex === this._playerList.length) {
                     currentBankerIndex = 0;
                 }
-                currentBankerIndex ++;
+
                 break;
             case 'banker-type-2':
                 //霸王庄
                 currentBankerIndex = 0;
                 break;
         }
-        let bankerId  = undefined;
-        for (let i = 0 ; i < this._playerList.length ; i ++){
-            let player = this._playerList[i];
-            if (i === currentBankerIndex){
-                player.setBanker(true);
-                bankerId = player.getId();
-            }else{
-                player.setBanker(false);
-            }
+        for (let i = 0; i < this._playerList.length; i++) {
+            this._playerList[i].setBanker(false);
         }
+        this._playerList[currentBankerIndex].setBanker(true);
+        let id = this._playerList[currentBankerIndex].getId();
         for (let i = 0 ; i < this._playerList.length ; i ++){
             let player = this._playerList[i];
-            player.sendMessage("change-banker", {bankerId: bankerId}, 0);
+            player.sendMessage('change-banker', {bankerId: id}, 0);
         }
     }
     syncRoomState() {
