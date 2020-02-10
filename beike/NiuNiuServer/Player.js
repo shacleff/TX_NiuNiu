@@ -10,6 +10,8 @@ class Player {
         this._room = undefined;
         this._isHouseMaster = false; //是不是房主
         this._isBanker = false;
+        this._currentScore = 0;
+        this._totalScore = 0;
         this.resgisterMessage(client);
     }
     setBanker(value) {
@@ -69,6 +71,9 @@ class Player {
                         this._room.syncAllPlayerInfo();
                         this._room = undefined;
                         this._handCardInfo = undefined;
+                        this._isBanker = false;
+                        this._currentScore = 0;
+                        this._totalScore = 0;
                     } else {
                         this.sendMessage(type, { err: exitResult }, callBackId);
                     }
@@ -82,6 +87,17 @@ class Player {
                         this.sendMessage(type, { err: startResult }, callBackId);
                     }
                     break;
+                case 'choose-score':
+                    let score = data.score;
+                    this._currentScore = score;
+                    if (this._room){
+                        this._room.syncAllPlayerInfo();
+                        this.sendMessage(type, "发送成功", callBackId);
+                        this.sendShowAllCardMessage();
+                    }else{
+                        this.sendMessage(type, {err: "房间不存在"}, callBackId);
+                    }
+                    break;    
                 default:
                     break;
             }
@@ -112,8 +128,22 @@ class Player {
             housecard_count: this._housecardCount,
             headImageUrl: this._headImageUrl,
             isHouseMaster: this._isHouseMaster,
-            roomId: currentRoomId
+            roomId: currentRoomId,
+            isBanker: this._isBanker,
+            currentScore: this._currentScore,
+            totalScore: this._totalScore
         }
+    }
+    sendShowAllCardMessage(){
+        for (let i = 0 ; i < this._handCardList.length ; i ++){
+            this._handCardList[i].setShow(true);
+        }
+        let cardInfoList = [];
+        for (let i = 0 ; i < this._handCardList.length ; i ++){
+            cardInfoList.push(this._handCardList[i].getInfo());
+        }
+        this._handCardInfo = cardInfoList;
+        this.sendMessage('push-card', cardInfoList, 0);
     }
     sendPushCardMessage(handCardList, kouCount) {
         if (!this._isBanker) {
@@ -125,6 +155,7 @@ class Player {
         for (let i = 0 ; i < handCardList.length ; i ++){
             cardInfoList.push(handCardList[i].getInfo());
         }
+        this._handCardList = handCardList;
         this._handCardInfo = cardInfoList;
         this.sendMessage('push-card', cardInfoList, 0);
     }

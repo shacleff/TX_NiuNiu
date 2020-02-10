@@ -12,36 +12,64 @@ cc.Class({
         GameConfig: cc.JsonAsset,
         gamePlayerNodePrefab: cc.Prefab,
         startGameButton: cc.Node,
-        cardPrefab: cc.Prefab
+        cardPrefab: cc.Prefab,
+        upScorePrefab: cc.Prefab
     },
     onLoad() {
+        this._currentPlayerScore = 0;
         this._playerNodeList = [];
         this._roomState = undefined;
         global.messageController.onSyncAllPlayerInfo = this.syncAllPlayerInfo.bind(this);
         global.messageController.onSyncRoomState = this.syncRoomState.bind(this);
         global.messageController.onChangeBanker = this.changeBanker.bind(this);
         global.messageController.onPushCard = this.pushCard.bind(this);
+        this.upScoreNode = cc.instantiate(this.upScorePrefab);
+        this.upScoreNode.parent = this.node;
+        this.upScoreNode.active = false;
+        this._cardNodeList = [];
     },
     pushCard(data) {
         console.log("push card data", data);
+        for (let i = 0; i < this._cardNodeList.length; i++) {
+            this._cardNodeList[i].destroy();
+        }
+        this._cardNodeList = [];
         for (let i = 0; i < data.length; i++) {
             let info = data[i];
             let card = cc.instantiate(this.cardPrefab);
             card.parent = this.node;
             card.emit('set-info', info);
             card.scale = 0.6;
-            card.x = (5 - 1) * -0.5 * 60 + i * 60;
+
+            card.x = (5 - 1) * -0.5 * 50 + i * 50;
             card.y = -100;
+            this._cardNodeList.push(card);
         }
-        for (let i = 0 ; i < this._playerNodeList.length ; i ++){
-            this._playerNodeList[i].emit("push-card");
+
+
+
+        for (let i = 0; i < this._playerNodeList.length; i++) {
+            let player = this._playerNodeList[i];
+            player.emit('push-card');
+        }
+        if (this._bankerId !== 0 &&
+            this._bankerId !== global.playerData.getID() &&
+            !this._currentPlayerScore
+        ) {
+            this.upScoreNode.active = true;
         }
     },
     changeBanker(data) {
         let bankerId = data.bankerId;
+        this._bankerId = bankerId;
         for (let i = 0; i < this._playerNodeList.length; i++) {
             let node = this._playerNodeList[i];
             node.emit("change-banker", bankerId);
+        }
+        if (bankerId !== global.playerData.getID()) {
+            this.upScoreNode.active = true;
+        } else {
+            this.upScoreNode.active = false;
         }
     },
     syncRoomState(data) {
@@ -50,6 +78,17 @@ cc.Class({
     },
     syncAllPlayerInfo(data) {
         let count = data.length - this._playerNodeList.length;
+        this._bankerId = 0;
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].id === global.playerData.getID()) {
+                this._currentPlayerScore = data[i].currentScore;
+            }
+        }
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].isBanker) {
+                this._bankerId = data[i].id;
+            }
+        }
         if (count > 0) {
             let length = this._playerNodeList.length;
             for (let i = 0; i < count; i++) {

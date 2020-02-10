@@ -11,13 +11,17 @@ cc.Class({
         houseMasterMark: cc.Node,
         bankerIcon: cc.Node,
         cardPrefab: cc.Prefab,
-        GameConfig: cc.JsonAsset
+        currentScoreNode: cc.Node,
+        totalScoreLabel: cc.Node,
+        scoreTextureList: [cc.SpriteFrame]
     },
 
 
 
     onLoad() {
+        this._cardNodeList = [];
         this.playerNodePositionConfig = this.gameConfig.json.PlayerNodePositionConfig;
+        this.cardPositionConfig = this.gameConfig.json.CardPositionConfig;
         // this.node.on("init-player-node", (info, index) => {
         //     let id = info.id;
         //     this._id = id;
@@ -29,6 +33,7 @@ cc.Class({
         this.node.on('update-info', (info, index, selfIndex, count) => {
             let id = info.id;
             this._id = id;
+            this._playerCount = count;
             let nickName = info.nickname;
             this.nickNameLabel.getComponent(cc.Label).string = nickName;
             this.idLabel.getComponent(cc.Label).string = "ID:" + id;
@@ -45,8 +50,18 @@ cc.Class({
             this._currentIndex = currentIndex;
             this.node.x = config[currentIndex].x;
             this.node.y = config[currentIndex].y;
-            this._index = index;
-            this._cardPositionConfig = this.gameConfig.json.CardNodePositionConfig[count];
+            let isBanker = info.isBanker;
+            this.bankerIcon.active = isBanker;
+            let currentScore = info.currentScore;
+            let totalScore = info.totalScore;
+            console.log("current score", currentScore);
+            console.log("total score", totalScore);
+            if (currentScore > 0){
+                this.currentScoreNode.getComponent(cc.Sprite).spriteFrame = this.scoreTextureList[currentScore - 1];
+            }else{
+                this.currentScoreNode.getComponent(cc.Sprite).spriteFrame = undefined;
+            }
+            this.totalScoreLabel.getComponent(cc.Label).string = totalScore;
 
         });
         this.node.on('change-banker', (id) => {
@@ -57,19 +72,23 @@ cc.Class({
             }
         });
         this.node.on("push-card", () => {
+            for (let i = 0 ; i < this._cardNodeList.length ; i ++){
+                this._cardNodeList[i].destroy();
+            }
+            this._cardNodeList = [];
             if (this._id !== global.playerData.getID()) {
+                let positionConfig = this.cardPositionConfig[this._playerCount];
                 for (let i = 0; i < 5; i++) {
                     let card = cc.instantiate(this.cardPrefab);
                     card.parent = this.node;
                     card.emit("set-info", { number: 0, color: "" });
+                    let position = positionConfig[this._currentIndex];
                     card.scale = 0.4;
-                    let positionConfig = this._cardPositionConfig[this._currentIndex];
-                    card.y = positionConfig.y;
-                    card.x = positionConfig.x + (5 - 1) * -0.5 * 20 + 20 * i;
-
+                    card.y = position.y;
+                    card.x = position.x + (5 - 1) * 0.5 * - 40 + 40 * i;
+                    this._cardNodeList.push(card);
                 }
             }
-
         });
     },
 
